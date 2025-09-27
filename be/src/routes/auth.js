@@ -2,6 +2,7 @@ const express = require("express");
 const { userValidationSchema } = require("../utils/zod.js");
 const bcrypt = require("bcrypt");
 const UserInstance = require("../models/user.js");
+const { z } = require("../utils/zod.js");
 const authRouter = express.Router();
 
 authRouter.post("/signup", async (req, res) => {

@@ -1,4 +1,4 @@
-import { z } from "zod";
+const { z } = require("zod");
 
 export const userValidationSchema = z.object({
   fullName: z.string().min(1, "Name is required"),
@@ -15,3 +15,5 @@ export const userValidationSchema = z.object({
   role: z.enum(["admin", "manager", "employee"]),
   type: z.enum(["developer", "tester"]),
 });
+
+module.exports = { z };
