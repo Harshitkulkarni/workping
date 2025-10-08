@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  backend:
+    build: ./be
+    ports:
+      - "7777:7777"
+    container_name: workping-backend
+
+  frontend:
+    build: ./fe
+    ports:
+      - "80:80"
+    container_name: workping-frontend
+    depends_on:
+      - backend
