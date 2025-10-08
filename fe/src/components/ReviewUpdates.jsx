@@ -3,13 +3,15 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { baseURL } from "@/utils/constant";
+
 const ReviewUpdates = () => {
   const [employees, setEmployees] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/review/employees", { withCredentials: true })
+      .get(baseURL + "/review/employees", { withCredentials: true })
       .then((res) => setEmployees(res.data.employees))
       .catch(() => toast.error("Failed to load employees"));
   }, []);

@@ -1,6 +1,6 @@
 const { z } = require("zod");
 
-export const userValidationSchema = z.object({
+const userValidationSchema = z.object({
   fullName: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email format"),
   password: z
@@ -16,4 +16,4 @@ export const userValidationSchema = z.object({
   type: z.enum(["developer", "tester"]),
 });
 
-module.exports = { z };
+module.exports = { userValidationSchema };

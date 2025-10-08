@@ -6,8 +6,15 @@ const taskAssignmentSchema = new mongoose.Schema({
   description: { type: String, required: true },
   status: {
     type: String,
-    enum: ["pending", "in-progress", "review", "completed", "cancelled"],
-    default: "pending",
+    enum: [
+      "pending",
+      "to do",
+      "in-progress",
+      "review",
+      "completed",
+      "cancelled",
+    ],
+    default: "to do",
   },
   assignedTo: {
     type: mongoose.Schema.Types.ObjectId,

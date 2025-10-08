@@ -3,6 +3,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+import { baseURL } from "@/utils/constant";
+
 const CreateTeam = () => {
   const [teamData, setTeamData] = useState({
     name: "",
@@ -15,7 +17,7 @@ const CreateTeam = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/employees", { withCredentials: true })
+      .get(baseURL + "/employees", { withCredentials: true })
       .then((res) => setEmployees(res.data.users))
       .catch(() => toast.error("Failed to load employees"));
   }, []);
@@ -51,7 +53,7 @@ const CreateTeam = () => {
     }
 
     try {
-      await axios.post("http://localhost:7777/create", teamData, {
+      await axios.post(baseURL + "/create", teamData, {
         withCredentials: true,
       });
       toast.success("Team created successfully!");

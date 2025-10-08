@@ -3,13 +3,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 
+import { baseURL } from "@/utils/constant";
 const TeamPage = () => {
   const [teams, setTeams] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("http://localhost:7777/myteams", { withCredentials: true })
+      .get(baseURL + "/myteams", { withCredentials: true })
       .then((res) => setTeams(res.data.teams))
       .catch((err) => toast.error("Failed to load teams"));
   }, []);

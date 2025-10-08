@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { baseURL } from "@/utils/constant";
 
 const UpdatesForm = () => {
   const navigate = useNavigate();
@@ -22,13 +23,9 @@ const UpdatesForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post(
-      "http://localhost:7777/updatesform",
-      formData,
-      {
-        withCredentials: true,
-      }
-    );
+    const res = await axios.post(baseURL + "/updatesform", formData, {
+      withCredentials: true,
+    });
     if (res.status === 200 || res.status === 201) {
       toast.success("Form submitted successfully!");
       setTimeout(() => navigate("/dashboard"), 1500); // Delay to let toast show

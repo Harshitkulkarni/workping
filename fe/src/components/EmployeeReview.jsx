@@ -3,6 +3,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { baseURL } from "@/utils/constant";
+
 const EmployeeReview = () => {
   const { id } = useParams();
   const [tasks, setTasks] = useState([]);
@@ -10,7 +12,7 @@ const EmployeeReview = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:7777/review/employee/${id}`, {
+      .get(`${baseURL}/review/employee/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -26,17 +28,16 @@ const EmployeeReview = () => {
   const handleApprove = async (ticketNumber) => {
     try {
       await axios.put(
-        `http://localhost:7777/approve-task/${ticketNumber}`,
+        `${baseURL}/approve-task/${ticketNumber}`,
         {},
         { withCredentials: true }
       );
       toast.success("Task approved");
 
       // Refresh data
-      const res = await axios.get(
-        `http://localhost:7777/review/employee/${id}`,
-        { withCredentials: true }
-      );
+      const res = await axios.get(`${baseURL}/review/employee/${id}`, {
+        withCredentials: true,
+      });
       setTasks(res.data.tasks);
       setUpdates(res.data.updates);
     } catch (err) {

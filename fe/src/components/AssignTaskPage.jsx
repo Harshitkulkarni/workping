@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+import { baseURL } from "@/utils/constant";
+
 // Helper component for the Search Icon
 const SearchIcon = () => (
   <svg
@@ -34,7 +36,7 @@ const AssignTaskPage = () => {
   // Fetch employees on component mount
   useEffect(() => {
     axios
-      .get("http://localhost:7777/users/my-employees", {
+      .get(baseURL + "/users/my-employees", {
         withCredentials: true,
       })
       .then((res) => {
@@ -71,7 +73,7 @@ const AssignTaskPage = () => {
 
     try {
       await axios.post(
-        "http://localhost:7777/assign-task",
+        baseURL + "/assign-task",
         {
           employeeId: selectedEmployee._id,
           ticketNumber,

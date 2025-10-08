@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+import { baseURL } from "@/utils/constant";
+
 const TeamDetails = () => {
   const { id } = useParams();
   const [team, setTeam] = useState(null);
@@ -10,7 +12,7 @@ const TeamDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:7777/myteams/${id}`, { withCredentials: true })
+      .get(`${baseURL}/myteams/${id}`, { withCredentials: true })
       .then((res) => setTeam(res.data.team))
       .catch((err) => toast.error("Failed to load team details"));
   }, [id]);

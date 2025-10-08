@@ -3,6 +3,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 
+import { baseURL } from "@/utils/constant";
+
 const TaskTable = () => {
   const [tasks, setTasks] = useState([]);
   const [sortBy, setSortBy] = useState("date");
@@ -12,8 +14,8 @@ const TaskTable = () => {
     const fetchTasks = async () => {
       try {
         const endpoint = userId
-          ? `http://localhost:7777/tasks/user/${userId}`
-          : `http://localhost:7777/my-tasks`;
+          ? `${baseURL}/tasks/user/${userId}`
+          : `${baseURL}/my-tasks`;
 
         const res = await axios.get(endpoint, { withCredentials: true });
         setTasks(res.data.tasks);

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { addUser } from "@/utils/userSlice";
 
+import { baseURL } from "@/utils/constant";
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const SignUp = () => {
     e.preventDefault();
     console.log(formData);
 
-    const res = await axios.post("http://localhost:7777/signup", formData, {
+    const res = await axios.post(baseURL + "/signup", formData, {
       withCredentials: true,
     });
     dispatch(addUser(res.data.data));
